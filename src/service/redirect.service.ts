@@ -5,18 +5,18 @@ import { ShortUrlRepository } from '../repository/short-url.repository';
 export class RedirectService {
   constructor(private readonly repo: ShortUrlRepository) {}
 
-  async resolveAndTrack(shortCode: string): Promise<string> {
+  async resolveAndTrack(shortCode: string): Promise<string | null> {
     const record = await this.repo.findByShortCode(shortCode);
 
     if (!record) {
-      throw new Error('Short URL not found');
+      return null;
     }
 
     const now = new Date();
 
     if (record.expires_at <= now) {
       await this.repo.delete(shortCode);
-      throw new Error('Short URL expired');
+      return null;
     }
 
     await Promise.all([
