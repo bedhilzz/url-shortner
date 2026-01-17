@@ -14,9 +14,7 @@ export abstract class ShortUrlRepository {
   /**
    * Retrieve a short URL record by short_code.
    */
-  abstract findByShortCode(
-    shortCode: string,
-  ): Promise<ShortUrlEntity | null>;
+  abstract findByShortCode(shortCode: string): Promise<ShortUrlEntity | null>;
 
   /**
    * Increment click count by 1.

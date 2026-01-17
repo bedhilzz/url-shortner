@@ -1,5 +1,5 @@
-import { InMemoryShortUrlRepository } from "../repository/in-memory-short-url.repository";
-import { RedirectService } from "../service/redirect.service";
+import { InMemoryShortUrlRepository } from '../repository/in-memory-short-url.repository';
+import { RedirectService } from '../service/redirect.service';
 
 describe('RedirectService – concurrency safety', () => {
   let repo: InMemoryShortUrlRepository;
@@ -22,8 +22,6 @@ describe('RedirectService – concurrency safety', () => {
   });
 
   it('increments click_count correctly under 100 concurrent requests', async () => {
-    const now = new Date();
-
     const requests = Array.from({ length: 150 }).map(() =>
       service.resolveAndTrack('concurrent'),
     );
@@ -84,4 +82,3 @@ describe('RedirectService – deterministic TTL expiration', () => {
     expect(afterExpiry).toBeNull();
   });
 });
-

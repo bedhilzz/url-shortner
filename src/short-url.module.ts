@@ -13,10 +13,6 @@ import { RedisModule } from './redis.module';
     StatsService,
     ShortUrlRepositoryProvider,
   ],
-  exports: [
-    ShortenerService,
-    RedirectService,
-    StatsService,
-  ],
+  exports: [ShortenerService, RedirectService, StatsService],
 })
 export class ShortUrlModule {}

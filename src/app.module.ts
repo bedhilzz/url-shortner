@@ -9,9 +9,9 @@ import { ShortUrlModule } from './short-url.module';
       isGlobal: true, // available everywhere
       envFilePath: [`.env.${process.env.NODE_ENV}`, '.env'],
     }),
-    ShortUrlModule
+    ShortUrlModule,
   ],
   controllers: [],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

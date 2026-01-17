@@ -6,6 +6,7 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
+import { Response } from 'express';
 
 @Injectable()
 export class ProcessingTimeInterceptor implements NestInterceptor {
@@ -14,10 +15,11 @@ export class ProcessingTimeInterceptor implements NestInterceptor {
 
     return next.handle().pipe(
       tap(() => {
-        const end: bigint = process.hrtime.bigint();
-        const micros: number = Number((end - start) / 1_000n);
+        const end = process.hrtime.bigint();
+        const micros = Number((end - start) / 1_000n);
 
-        const res = context.switchToHttp().getResponse();
+        const res = context.switchToHttp().getResponse<Response>();
+
         res.setHeader('X-Processing-Time-Micros', micros.toString());
       }),
     );
