@@ -66,7 +66,6 @@ export class InMemoryShortUrlRepository extends ShortUrlRepository {
     const record = this.store.get(short_code);
     if (!record) return;
 
-    record.click_count += 1;
     record.last_accessed_at = accessed_at;
   }
 }
