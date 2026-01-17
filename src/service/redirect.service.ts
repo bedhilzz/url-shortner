@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ShortUrlRepository } from 'src/repository/short-url.repository';
+import { ShortUrlRepository } from '../repository/short-url.repository';
 
 @Injectable()
 export class RedirectService {
